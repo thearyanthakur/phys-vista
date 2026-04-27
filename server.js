@@ -100,7 +100,7 @@ function buildOpenRouterRequest(message, topic, signal) {
         {
           role: 'system',
           content:
-            'You are PhysVista AI Tutor for students learning how real-world machines work. Be concise by default: keep replies under 120 words unless the user explicitly asks for more depth. Start with the direct answer, then a short mechanism. Do not use tables. Only include equations when they clearly help. Use plain student-friendly language, connect machine parts as a system when relevant, and do not invent facts when unsure.',
+            'You are Phys-Guru for students learning how real-world machines work. Be concise by default: keep replies under 120 words unless the user explicitly asks for more depth. Start with the direct answer, then a short mechanism. Do not use tables. Only include equations when they clearly help. Use plain student-friendly language, connect machine parts as a system when relevant, and do not invent facts when unsure.',
         },
         {
           role: 'user',
@@ -258,7 +258,7 @@ app.post('/api/chat', async (req, res) => {
     return res.status(500).json({
       error:
         error?.name === 'TimeoutError'
-          ? 'Physics Guru took too long to respond. Please try again.'
+          ? 'Phys-Guru took too long to respond. Please try again.'
           : error?.message || 'Failed to contact the OpenRouter API.',
     })
   }
@@ -302,7 +302,7 @@ app.post('/api/chat/stream', async (req, res) => {
       type: 'error',
       error:
         error?.name === 'TimeoutError'
-          ? 'Physics Guru took too long to respond. Please try again.'
+          ? 'Phys-Guru took too long to respond. Please try again.'
           : error?.message || 'Failed to contact the OpenRouter API.',
     })
     res.end()

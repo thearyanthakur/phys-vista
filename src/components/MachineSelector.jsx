@@ -1,72 +1,101 @@
 import SectionHeader from './SectionHeader'
-import { ArrowRightIcon, MachineIcon } from './icons'
+import { ArrowRightIcon } from './icons'
+import { motion } from 'framer-motion'
 
 function MachineSelector({ copy, machines, selectedMachineId, onSelect }) {
   return (
-    <section id="machines" className="section-shell py-12 sm:py-16 lg:py-20">
+    <section id="machines" className="section-shell py-16 sm:py-24 lg:py-32">
       <SectionHeader
         eyebrow={copy.machines.eyebrow}
         title={copy.machines.title}
         description={copy.machines.description}
       />
 
-      <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+      <motion.div 
+        className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.1 }}
+        variants={{
+          hidden: { opacity: 0 },
+          visible: {
+            opacity: 1,
+            transition: { staggerChildren: 0.15 }
+          }
+        }}
+      >
         {machines.map((machine) => {
           const isActive = machine.id === selectedMachineId
+          // Safely handle IDs like "levers-pulleys-gears" to "levers" if needed, 
+          // or just assume the image exists exactly as the ID. 
+          // For levers-pulleys-gears, we generated 'levers.png'.
+          const imageId = machine.id.includes('levers') ? 'levers' : machine.id
 
           return (
-            <button
+            <motion.div
               key={machine.id}
-              type="button"
-              onClick={() => onSelect(machine.id)}
-              className={`group text-left transition ${isActive ? 'translate-y-[-2px]' : 'hover:-translate-y-1'}`}
+              variants={{
+                hidden: { opacity: 0, y: 40 },
+                visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } }
+              }}
             >
-              <article
-                className={`relative h-full overflow-hidden rounded-[30px] border p-6 transition ${
-                  isActive
-                    ? 'border-cyan-300 bg-[linear-gradient(180deg,rgba(207,250,254,0.75),rgba(255,255,255,0.96))] dark:border-cyan-400/40 dark:bg-[linear-gradient(180deg,rgba(8,145,178,0.2),rgba(15,23,42,0.9))]'
-                    : 'border-white/80 bg-white/80 hover:border-slate-200 dark:border-white/10 dark:bg-white/5 dark:hover:border-white/20'
-                }`}
+              <button
+                type="button"
+                onClick={() => onSelect(machine.id)}
+                className="group w-full text-left outline-none"
               >
-                <div className="absolute inset-x-0 top-0 h-1 bg-[linear-gradient(90deg,#0891b2,#2dd4bf,#fbbf24)]" />
-
-                <div className="flex items-start justify-between gap-4">
-                  <div>
-                    <div className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">{machine.category}</div>
-                    <h3 className="mt-3 font-display text-3xl font-bold tracking-tight text-slate-950 dark:text-white">{machine.name}</h3>
+                <article
+                  className={`relative flex aspect-[4/5] flex-col justify-end overflow-hidden ${
+                    isActive ? 'ring-4 ring-dbtm-yellow ring-offset-4 ring-offset-white dark:ring-offset-dbtm-black' : ''
+                  }`}
+                >
+                  <div className="absolute inset-0 bg-dbtm-black">
+                    <img 
+                      src={`/images/${imageId}.png`} 
+                      alt={machine.name} 
+                      className="h-full w-full object-cover transition-transform duration-1000 ease-out group-hover:scale-110" 
+                      loading="lazy"
+                    />
+                    {/* Gradient Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-90 transition-opacity duration-500 group-hover:opacity-70" />
                   </div>
-                  <div className={`flex h-14 w-14 items-center justify-center rounded-2xl ${isActive ? 'bg-ink-950 text-white' : 'bg-slate-100 text-slate-700 dark:bg-white/10 dark:text-slate-200'}`}>
-                    <MachineIcon machineId={machine.id} className="h-7 w-7" />
-                  </div>
-                </div>
-
-                <p className="mt-4 text-sm leading-7 text-slate-600 dark:text-slate-300">{machine.tagline}</p>
-
-                <div className="mt-6 flex flex-wrap gap-2">
-                  {machine.outcomes.map((outcome) => (
-                    <span key={outcome} className="rounded-full border border-slate-200/80 bg-slate-50/80 px-3 py-1 text-xs font-medium text-slate-600 dark:border-white/10 dark:bg-white/10 dark:text-slate-200">
-                      {outcome}
-                    </span>
-                  ))}
-                </div>
-
-                <div className="mt-7 flex items-center justify-between text-sm">
-                  <div>
-                    <div className="font-semibold text-slate-950 dark:text-white">{machine.duration}</div>
-                    <div className="mt-1 text-slate-500 dark:text-slate-400">{machine.level}</div>
-                  </div>
-                  <div className={`inline-flex items-center gap-2 font-semibold ${
-                    isActive ? 'text-slate-950 dark:text-white' : 'text-slate-600 group-hover:text-slate-950 dark:text-slate-300 dark:group-hover:text-white'
+                  
+                  {/* Text Content Block */}
+                  <div className={`relative z-10 flex flex-col justify-end p-6 transition-colors duration-300 sm:p-8 ${
+                    isActive ? 'bg-dbtm-yellow' : 'bg-transparent group-hover:bg-dbtm-yellow'
                   }`}>
-                    {copy.machines.openLesson}
-                    <ArrowRightIcon className="h-4 w-4" />
+                    <div className={`text-xs font-bold uppercase tracking-widest transition-colors duration-300 ${
+                      isActive ? 'text-dbtm-black' : 'text-dbtm-yellow group-hover:text-dbtm-black'
+                    }`}>
+                      {machine.category}
+                    </div>
+                    
+                    <div className="mt-3 flex items-end justify-between">
+                      <div className="pr-4">
+                        <h3 className={`font-display text-4xl font-bold uppercase tracking-normal transition-colors duration-300 sm:text-5xl xl:text-6xl ${
+                          isActive ? 'text-dbtm-black' : 'text-white group-hover:text-dbtm-black'
+                        }`}>
+                          {machine.name}
+                        </h3>
+                        <p className={`mt-2 text-sm font-medium leading-relaxed transition-colors duration-300 ${
+                          isActive ? 'text-dbtm-black/80' : 'text-slate-300 group-hover:text-dbtm-black/80'
+                        }`}>
+                          {machine.tagline}
+                        </p>
+                      </div>
+                      <div className="shrink-0 pb-2">
+                        <ArrowRightIcon className={`h-6 w-6 transition-all duration-300 group-hover:translate-x-2 ${
+                          isActive ? 'text-dbtm-black' : 'text-white group-hover:text-dbtm-black'
+                        }`} />
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </article>
-            </button>
+                </article>
+              </button>
+            </motion.div>
           )
         })}
-      </div>
+      </motion.div>
     </section>
   )
 }

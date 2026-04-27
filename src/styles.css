@@ -1,14 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Space Grotesk", "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
-  --color-ink-950: #07111f;
-  --color-ink-900: #0d1b2d;
-  --color-canvas-50: #f8fbff;
-  --color-skyline-500: #0ea5e9;
-  --color-mint-400: #2dd4bf;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Bebas Neue", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --color-dbtm-yellow: #FFE600;
+  --color-dbtm-black: #000000;
+  --color-dbtm-white: #ffffff;
+  --color-canvas-50: #fdfbf7;
 }
 
 @layer base {
@@ -23,23 +22,12 @@
   }
 
   body {
-    @apply min-w-[320px] bg-canvas-50 font-sans text-slate-900 antialiased;
-    background-image:
-      linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(248, 251, 255, 0.96)),
-      radial-gradient(circle at top left, rgba(14, 165, 233, 0.08), transparent 28%),
-      radial-gradient(circle at 80% 10%, rgba(45, 212, 191, 0.08), transparent 24%);
-    transition:
-      background-color 220ms ease,
-      color 220ms ease,
-      background-image 220ms ease;
+    @apply min-w-[320px] bg-white font-sans text-dbtm-black antialiased;
+    transition: background-color 220ms ease, color 220ms ease;
   }
 
   .dark body {
-    @apply bg-slate-950 text-slate-100;
-    background-image:
-      linear-gradient(180deg, rgba(2, 6, 23, 0.96), rgba(3, 7, 18, 0.98)),
-      radial-gradient(circle at top left, rgba(14, 165, 233, 0.16), transparent 28%),
-      radial-gradient(circle at 80% 10%, rgba(45, 212, 191, 0.1), transparent 24%);
+    @apply bg-dbtm-black text-white;
   }
 
   button,
@@ -55,7 +43,7 @@
   textarea:focus-visible,
   input:focus-visible,
   select:focus-visible {
-    @apply ring-2 ring-skyline-500/50 ring-offset-2 ring-offset-canvas-50;
+    @apply ring-2 ring-dbtm-yellow ring-offset-2 ring-offset-white;
   }
 
   .dark button:focus-visible,
@@ -63,39 +51,11 @@
   .dark textarea:focus-visible,
   .dark input:focus-visible,
   .dark select:focus-visible {
-    @apply ring-offset-slate-950;
+    @apply ring-offset-dbtm-black;
   }
 
   #root {
     @apply min-h-screen;
-  }
-
-  .high-contrast body {
-    background-image: linear-gradient(180deg, rgba(255, 255, 255, 1), rgba(241, 245, 249, 1));
-  }
-
-  .high-contrast.dark body {
-    background-image: linear-gradient(180deg, rgba(2, 6, 23, 1), rgba(2, 6, 23, 1));
-  }
-
-  .high-contrast .glass-panel {
-    @apply border-slate-300 bg-white;
-    box-shadow:
-      0 18px 70px -38px rgba(15, 23, 42, 0.28),
-      inset 0 1px 0 rgba(255, 255, 255, 1);
-  }
-
-  .high-contrast.dark .glass-panel,
-  .high-contrast .dark-panel {
-    @apply border-white/20;
-  }
-
-  .high-contrast .section-kicker {
-    @apply border-skyline-500/40 bg-skyline-500/15 text-slate-950;
-  }
-
-  .high-contrast.dark .section-kicker {
-    @apply text-white;
   }
 }
 
@@ -108,70 +68,46 @@
     @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
   }
 
-  .glass-panel {
-    @apply rounded-[30px] border border-white/80 bg-white/72 backdrop-blur-xl;
-    box-shadow:
-      0 24px 90px -46px rgba(15, 23, 42, 0.4),
-      inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  .glass-panel, .neo-panel {
+    @apply rounded-none bg-white text-dbtm-black border border-slate-200;
+    transition: background-color 0.15s;
   }
 
-  .dark .glass-panel {
-    @apply border-white/10 bg-white/5;
-    box-shadow:
-      0 24px 90px -46px rgba(2, 6, 23, 0.92),
-      inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  .dark .glass-panel, .dark .neo-panel {
+    @apply border-slate-800 bg-dbtm-black text-white;
   }
 
   .dark-panel {
-    @apply rounded-[30px] border border-white/10 bg-ink-950 text-white;
-    box-shadow:
-      0 34px 100px -48px rgba(2, 6, 23, 0.92),
-      inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    @apply rounded-none bg-dbtm-black text-white;
+  }
+
+  .dark .dark-panel {
+    @apply bg-white text-dbtm-black;
+  }
+
+  .neo-btn {
+    @apply inline-flex items-center justify-center rounded-full bg-dbtm-black px-6 py-3 font-sans font-semibold text-white transition-all duration-300 hover:bg-dbtm-black/80;
+  }
+  .dark .neo-btn {
+    @apply bg-white text-dbtm-black hover:bg-white/80;
   }
 
   .section-kicker {
-    @apply inline-flex items-center rounded-full border border-skyline-500/15 bg-skyline-500/10 px-3 py-1 text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-slate-700;
+    @apply inline-flex items-center rounded-full bg-dbtm-yellow px-3 py-1 text-xs font-bold uppercase tracking-widest text-dbtm-black;
   }
 
-  .dark .section-kicker {
-    @apply border-cyan-400/20 bg-cyan-400/10 text-cyan-100;
+  .markdown-content p {
+    margin-bottom: 0.75em;
   }
-
-  .mesh-surface {
-    background-image:
-      linear-gradient(transparent 96%, rgba(255, 255, 255, 0.05) 96%),
-      linear-gradient(90deg, transparent 96%, rgba(255, 255, 255, 0.05) 96%),
-      radial-gradient(circle at top left, rgba(14, 165, 233, 0.16), transparent 30%);
-    background-size: 100% 42px, 42px 100%, auto;
+  .markdown-content p:last-child {
+    margin-bottom: 0;
   }
-
-  .float-slow {
-    animation: float-slow 7s ease-in-out infinite;
+  .markdown-content ul {
+    list-style-type: disc;
+    padding-left: 1.5em;
+    margin-bottom: 0.75em;
   }
-
-  .hero-orb {
-    animation: drift-orb 9s ease-in-out infinite;
-  }
-}
-
-@keyframes float-slow {
-  0%,
-  100% {
-    transform: translateY(0px);
-  }
-
-  50% {
-    transform: translateY(-8px);
-  }
-}
-
-@keyframes drift-orb {
-  0%,
-  100% {
-    transform: translate3d(0px, 0px, 0px);
-  }
-
-  50% {
-    transform: translate3d(8px, -12px, 0px);
+  .markdown-content strong {
+    font-weight: 700;
   }
 }

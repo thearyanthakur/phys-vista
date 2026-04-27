@@ -44,7 +44,7 @@ function createIntroMessage(machine, language) {
     role: 'assistant',
     text:
       introByLanguage[language] ||
-      `I am the AI tutor for ${machine.name}. Ask how its subsystems work together, where energy flows, or which visual detail to focus on in the lesson.`,
+      `I am Phys-Guru for ${machine.name}. Ask how its subsystems work together, where energy flows, or which visual detail to focus on in the lesson.`,
   }
 }
 
@@ -92,7 +92,7 @@ async function requestChatStream(payload) {
     }
   }
 
-  throw lastError || new Error('Physics Guru backend is unavailable.')
+  throw lastError || new Error('Phys-Guru backend is unavailable.')
 }
 
 function App() {
@@ -109,6 +109,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(false)
   const [isVisionVisible, setIsVisionVisible] = useState(false)
   const [toastMessage, setToastMessage] = useState('')
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false)
 
   useEffect(() => {
     if (!selectedMachine) {
@@ -205,12 +206,12 @@ function App() {
         const data = parseJsonSafely(rawText)
         throw new Error(
           data?.error ||
-            'Physics Guru could not respond right now. Start the backend server and check the AI configuration.',
+            'Phys-Guru could not respond right now. Start the backend server and check the AI configuration.',
         )
       }
 
       if (!response.body) {
-        throw new Error('Physics Guru returned an unreadable response. Please try again.')
+        throw new Error('Phys-Guru returned an unreadable response. Please try again.')
       }
 
       const reader = response.body.getReader()
@@ -271,13 +272,13 @@ function App() {
           }
 
           if (payload.type === 'error') {
-            throw new Error(payload.error || 'Physics Guru could not respond right now.')
+            throw new Error(payload.error || 'Phys-Guru could not respond right now.')
           }
         }
       }
 
       if (!finalReply.trim()) {
-        throw new Error('Physics Guru returned an unreadable response. Please try again.')
+        throw new Error('Phys-Guru returned an unreadable response. Please try again.')
       }
     } catch (error) {
       setMessages((current) => [
@@ -286,9 +287,9 @@ function App() {
           role: 'assistant',
           text:
             isNetworkFetchError(error)
-              ? 'Physics Guru could not connect to the backend. Start `npm.cmd run server` and open the app through the PhysVista server.'
+              ? 'Phys-Guru could not connect to the backend. Start `npm.cmd run server` and open the app through the PhysVista server.'
               : error.message ||
-                'Physics Guru is unavailable right now. Start `npm.cmd run server` and confirm the AI provider key is set.',
+                'Phys-Guru is unavailable right now. Start `npm.cmd run server` and confirm the AI provider key is set.',
         },
       ])
     } finally {
@@ -303,27 +304,16 @@ function App() {
 
   return (
     <div className="page-shell">
-      {!settings.focusMode ? (
-        settings.nightMode ? (
-          <>
-            <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[44rem] bg-[radial-gradient(circle_at_top_left,rgba(14,165,233,0.14),transparent_28%),radial-gradient(circle_at_72%_14%,rgba(45,212,191,0.1),transparent_24%),radial-gradient(circle_at_48%_0%,rgba(56,189,248,0.08),transparent_18%)]" />
-            <div className="pointer-events-none absolute inset-x-0 top-[18rem] -z-10 h-[36rem] bg-[linear-gradient(180deg,rgba(2,6,23,0),rgba(8,15,33,0.62),rgba(2,6,23,0))]" />
-          </>
-        ) : (
-          <>
-            <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[44rem] bg-[radial-gradient(circle_at_top_left,rgba(14,165,233,0.22),transparent_30%),radial-gradient(circle_at_72%_14%,rgba(45,212,191,0.18),transparent_26%),radial-gradient(circle_at_48%_0%,rgba(251,191,36,0.14),transparent_24%)]" />
-            <div className="pointer-events-none absolute inset-x-0 top-[18rem] -z-10 h-[36rem] bg-[linear-gradient(180deg,rgba(248,251,255,0),rgba(219,234,254,0.42),rgba(248,251,255,0))]" />
-          </>
-        )
-      ) : null}
 
       <TopNav
         appName={copy.appName}
         appTagline={copy.appTagline}
         focusMode={settings.focusMode}
+        nightMode={settings.nightMode}
         onExplore={() => scrollToSection('machines')}
-        onSettings={() => scrollToSection('settings')}
+        onSettings={() => setIsSettingsOpen(true)}
         onVision={() => setIsVisionVisible(true)}
+        onToggleNightMode={() => handleSettingChange('nightMode', !settings.nightMode)}
         t={copy}
       />
 
@@ -332,7 +322,7 @@ function App() {
         focusMode={settings.focusMode}
         machine={selectedMachine}
         onExplore={() => scrollToSection('machines')}
-        onSettings={() => scrollToSection('settings')}
+        onSettings={() => setIsSettingsOpen(true)}
       />
 
       <main className="pb-16 sm:pb-24">
@@ -364,6 +354,8 @@ function App() {
         </LearningWorkspace>
         ) : null}
         <SettingsPage
+          isOpen={isSettingsOpen}
+          onClose={() => setIsSettingsOpen(false)}
           copy={copy}
           settings={settings}
           onReset={handleResetSettings}

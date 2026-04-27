@@ -1,9 +1,13 @@
 function SectionHeader({ eyebrow, title, description }) {
   return (
-    <div className="max-w-3xl">
-      <span className="section-kicker">{eyebrow}</span>
-      <h2 className="mt-5 font-display text-3xl font-bold tracking-tight text-slate-950 dark:text-white sm:text-4xl">{title}</h2>
-      {description ? <p className="mt-4 text-base leading-7 text-slate-600 dark:text-slate-300 sm:text-lg">{description}</p> : null}
+    <div className="max-w-4xl text-center md:text-left">
+      <div className="mb-4">
+        <span className="rounded-full bg-dbtm-yellow px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-dbtm-black">
+          {eyebrow}
+        </span>
+      </div>
+      <h2 className="font-display text-5xl font-bold uppercase leading-[0.9] tracking-normal text-dbtm-black dark:text-white sm:text-6xl md:text-7xl">{title}</h2>
+      {description ? <p className="mt-6 text-lg leading-relaxed text-slate-600 dark:text-slate-400 sm:text-xl">{description}</p> : null}
     </div>
   )
 }

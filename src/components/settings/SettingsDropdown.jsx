@@ -1,7 +1,7 @@
 function SettingsDropdown({ id, label, description, options, value, onChange }) {
   return (
     <div className="rounded-[24px] border border-slate-200/80 bg-slate-50/80 p-4 dark:border-white/10 dark:bg-white/5">
-      <label htmlFor={id} className="text-sm font-semibold text-slate-950 dark:text-white">
+      <label htmlFor={id} className="text-sm font-semibold text-slate-900 dark:text-white">
         {label}
       </label>
       {description ? <p className="mt-1 text-sm leading-6 text-slate-600 dark:text-slate-300">{description}</p> : null}

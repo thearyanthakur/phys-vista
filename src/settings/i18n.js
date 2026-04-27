@@ -20,13 +20,13 @@ const translations = {
       eyebrow: 'AI-Powered Physics Learning',
       title: 'Learn how real-world machines work without getting lost in jargon.',
       description:
-        'Phys-Vista turns complex physics systems into a guided study flow: watch animated explainers, inspect the systems, and ask the AI tutor whenever a concept feels unclear.',
+        'Phys-Vista turns complex physics systems into a guided study flow: watch animated explainers, inspect the systems, and ask Phys-Guru whenever a concept feels unclear.',
       primary: 'Start With Machines',
       secondary: 'Open Settings',
       cards: [
         ['Watch', 'Animated lessons and visual walkthroughs'],
         ['Inspect', 'System maps, summaries, and simulations'],
-        ['Ask', 'An in-context AI tutor for follow-up doubts'],
+        ['Ask', 'An in-context Phys-Guru for follow-up doubts'],
       ],
       featured: 'Featured module',
       nowLearning: 'Now learning',
@@ -56,7 +56,7 @@ const translations = {
       principles: [
         'Students see the machine first, then unpack the system logic step by step.',
         'Every lesson pairs animation with a readable explanation and a clean study structure.',
-        'The AI tutor stays inside the learning flow so students can resolve doubts immediately.',
+        'Phys-Guru stays inside the learning flow so students can resolve doubts immediately.',
       ],
     },
     machines: {
@@ -86,17 +86,17 @@ const translations = {
       subtitlesOff: 'Subtitles off',
       videoPlaceholderTitle: 'Video can be dropped in here when the final link is ready.',
       videoPlaceholderDescription:
-        'The learning workspace still stays useful: students can open the reference, then study the summary and AI tutor in the same flow.',
+        'The learning workspace still stays useful: students can open the reference, then study the summary and Phys-Guru in the same flow.',
     },
     chat: {
-      badge: 'AI Tutor',
+      badge: 'Phys-Guru',
       title: 'Ask while you learn',
-      description: 'The AI tutor stays tied to the active machine so follow-up questions remain in context.',
+      description: 'Phys-Guru stays tied to the active machine so follow-up questions remain in context.',
       currentLesson: 'Current lesson',
       thinking: 'Thinking through the concept...',
       placeholder: 'Ask about {machineName}, its systems, or the underlying physics...',
       enterHint: 'Press Enter to send. Use Shift+Enter for a new line.',
-      send: 'Ask AI Tutor',
+      send: 'Ask Phys-Guru',
       sending: 'Sending...',
     },
     settings: {
@@ -159,7 +159,7 @@ const translations = {
       title: 'About Phys-Vista',
       visionTitle: 'Vision',
       visionText:
-        'Phys-Vista makes physics easier to understand through AI tutoring, animated videos, and interactive simulations that stay in one continuous learning flow.',
+        'Phys-Vista makes physics easier to understand through Phys-Guru, animated videos, and interactive simulations that stay in one continuous learning flow.',
       missionTitle: 'Mission',
       missionPoints: [
         'Turn hard-to-imagine systems into visual, interactive lessons.',

@@ -2,7 +2,7 @@ function SettingsToggle({ checked, description, label, onChange }) {
   return (
     <div className="flex items-start justify-between gap-4 rounded-[24px] border border-slate-200/80 bg-slate-50/80 p-4 dark:border-white/10 dark:bg-white/5">
       <div className="min-w-0">
-        <div className="text-sm font-semibold text-slate-950 dark:text-white">{label}</div>
+        <div className="text-sm font-semibold text-slate-900 dark:text-white">{label}</div>
         {description ? <p className="mt-1 text-sm leading-6 text-slate-600 dark:text-slate-300">{description}</p> : null}
       </div>
 
