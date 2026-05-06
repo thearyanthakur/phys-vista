@@ -35,7 +35,7 @@ function HeroSection({ copy, focusMode, onExplore }) {
           </motion.div>
           <motion.h1
             variants={itemVariants}
-            className="font-display text-6xl font-bold uppercase leading-[0.85] tracking-normal text-dbtm-black dark:text-white sm:text-7xl md:text-8xl lg:text-[7.5rem]"
+            className="font-display text-5xl font-bold uppercase leading-[0.85] tracking-normal text-dbtm-black dark:text-white sm:text-6xl md:text-8xl lg:text-[7.5rem]"
           >
             {copy.hero.title}
           </motion.h1>
@@ -49,7 +49,7 @@ function HeroSection({ copy, focusMode, onExplore }) {
             <button
               type="button"
               onClick={onExplore}
-              className="inline-flex items-center gap-2 rounded-full bg-dbtm-black px-8 py-4 font-sans text-sm font-bold uppercase tracking-widest text-white transition-all hover:scale-105 hover:bg-dbtm-black/80 dark:bg-white dark:text-dbtm-black dark:hover:bg-white/90"
+              className="inline-flex items-center gap-2 rounded-full bg-dbtm-black px-6 py-3 font-sans text-xs sm:text-sm sm:px-8 sm:py-4 font-bold uppercase tracking-widest text-white transition-all hover:scale-105 hover:bg-dbtm-black/80 dark:bg-white dark:text-dbtm-black dark:hover:bg-white/90"
             >
               {copy.hero.primary}
               <ArrowRightIcon className="h-4 w-4" />
@@ -63,7 +63,7 @@ function HeroSection({ copy, focusMode, onExplore }) {
           <motion.div
             animate={{ x: [0, -1000] }}
             transition={{ repeat: Infinity, duration: 15, ease: 'linear' }}
-            className="flex whitespace-nowrap font-display text-2xl uppercase tracking-widest text-slate-500 dark:text-slate-400 sm:text-4xl"
+            className="flex whitespace-nowrap font-display text-xl uppercase tracking-widest text-slate-500 dark:text-slate-400 sm:text-3xl lg:text-4xl"
           >
             {[...Array(6)].map((_, i) => (
               <div key={i} className="flex items-center">

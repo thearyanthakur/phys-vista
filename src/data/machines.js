@@ -227,80 +227,6 @@ export const machines = [
     ],
   },
   {
-    id: 'cycle',
-    name: 'Bicycle',
-    category: 'Human-Powered Machines',
-    tagline: 'See how pedaling, gears, balance, and braking connect.',
-    intro:
-      'A bicycle is a great learning machine because students can directly feel leverage, torque, rotation, friction, and balance.',
-    summary:
-      'This lesson maps pedal input to chain transfer, wheel rotation, steering control, and safe braking.',
-    lessonTitle: 'Bicycle drivetrain study',
-    videoId: null,
-    sourceKind: 'search',
-    sourceLabel: 'Search Animagraffs references',
-    sourceUrl: 'https://www.youtube.com/results?search_query=Animagraffs%20bicycle%20drivetrain%20braking',
-    searchQuery: 'Animagraffs bicycle drivetrain braking',
-    duration: '9 min lesson',
-    level: 'All ages',
-    focusLabel: 'Human power flow',
-    misconception:
-      'Students often treat bicycles as simple wheels and pedals. The more useful view is that a bicycle is a power-transfer and stability system working continuously.',
-    studyChecklist: [
-      'Follow force from the rider into the crank, chain, and rear wheel.',
-      'Compare how gear choice changes force versus speed.',
-      'Observe how steering and balance corrections happen together.',
-    ],
-    outcomes: ['Pedal leverage', 'Chain drivetrain', 'Balance and braking'],
-    systems: [
-      { title: 'Crank and pedals', description: 'The rider applies torque through rotating levers.' },
-      { title: 'Chain drive', description: 'Sprockets and chain transfer power to the rear wheel.' },
-      { title: 'Balance and stopping', description: 'Steering geometry and brakes keep the ride controlled.' },
-    ],
-    visualExplainers: [
-      'Look at how crank length affects leverage.',
-      'Compare small and large sprockets.',
-      'Observe how braking changes wheel behavior.',
-    ],
-    summarySections: [
-      {
-        title: 'How Pedaling Creates Motion',
-        text:
-          'A bicycle starts with human input. When the rider pushes on the pedals, the crank turns and creates torque. That turning motion moves the chainring, which pulls the chain and transfers force to the rear sprocket. The rear wheel then rotates and pushes backward against the ground, and the ground pushes the bicycle forward.',
-      },
-      {
-        title: 'The Drivetrain and Gear Ratios',
-        text:
-          'The bicycle drivetrain is a force-transfer system. Changing gears alters the relationship between pedal rotation and wheel rotation. Lower gears make pedaling easier and are useful for starting or climbing hills. Higher gears allow more distance per pedal turn but require more effort. This makes the bicycle a clear everyday example of force-versus-speed tradeoffs.',
-      },
-      {
-        title: 'Balance, Steering, and Frame Geometry',
-        text:
-          'A bicycle stays upright through constant correction. As the rider leans slightly, the steering system helps move the wheels under the center of mass. Wheel rotation, steering geometry, and the rider’s own adjustments all help maintain balance. The faster the bicycle moves, the easier these corrections often become, which is why balancing at very low speed feels harder.',
-      },
-      {
-        title: 'Brakes, Tires, and Contact with the Ground',
-        text:
-          'Brakes slow the bicycle by creating friction at the wheel. Tires provide grip with the road so that pedaling, turning, and braking all work effectively. Without sufficient traction, the rider can lose control even if the drivetrain is working perfectly. This makes the bicycle a useful machine for understanding how motion depends on contact forces with the ground.',
-      },
-      {
-        title: 'Energy, Efficiency, and Rider Input',
-        text:
-          'Unlike an engine-powered vehicle, a bicycle uses direct human energy. That makes it extremely efficient for short travel because most of the system is focused on transferring rider effort with relatively low losses. Small changes in posture, gear choice, and road conditions strongly affect how efficiently the bicycle moves.',
-      },
-      {
-        title: 'The Big Picture',
-        text:
-          'A bicycle may look simple, but it brings together leverage, rotation, torque, friction, braking, and dynamic balance in one familiar machine. That is why it is such a strong teaching tool: students can feel the physics directly while riding.',
-      },
-    ],
-    quickPrompts: [
-      'Why do bicycles become easier to balance when moving?',
-      'Explain bike gears without equations.',
-      'How do disc brakes slow the wheel down?',
-    ],
-  },
-  {
     id: 'crane',
     name: 'Crane',
     category: 'Construction Machines',
@@ -448,4 +374,480 @@ export const machines = [
       'What keeps a ship from rolling over easily?',
     ],
   },
+  {
+    id: 'elevator',
+    name: 'Elevator',
+    category: 'Vertical Transport',
+    tagline: 'See how motors, counterweights, and safety brakes work together.',
+    intro:
+      'An elevator uses a balance of counterweights and lifting mechanisms to safely transport passengers vertically.',
+    summary:
+      'This lesson maps the hoistway, motor, counterweight, and safety mechanisms that make elevators reliable.',
+    lessonTitle: 'Elevator system overview',
+    videoId: 'rKp4pe92ljg',
+    sourceKind: 'video',
+    sourceLabel: 'Open verified Animagraffs lesson',
+    sourceUrl: 'https://youtu.be/rKp4pe92ljg?si=AKw8PXEUoATyr5A8',
+    searchQuery: 'Animagraffs Elevator',
+    duration: '10 min lesson',
+    level: 'Middle school to adult learners',
+    focusLabel: 'Vertical lifting and safety',
+    misconception:
+      'Students often think the motor lifts the entire weight of the elevator car. In reality, a counterweight balances most of the load, so the motor only lifts the difference.',
+    studyChecklist: [
+      'Observe the role of the counterweight in reducing motor effort.',
+      'Identify the overspeed governor and safety brakes.',
+      'Notice how the cables and sheaves transfer force.',
+    ],
+    outcomes: ['Counterweight balancing', 'Safety braking systems', 'Motor and hoistway operation'],
+    systems: [
+      { title: 'Hoistway and Car', description: 'The car travels vertically within a guided shaft.' },
+      { title: 'Counterweight', description: 'Balances the weight of the car to reduce the energy required.' },
+      { title: 'Safety Mechanisms', description: 'Brakes and governors prevent the car from falling.' },
+    ],
+    visualExplainers: [
+      'Watch how the counterweight moves in opposition to the car.',
+      'See the safety brakes engage if the cable goes slack.',
+      'Observe the motor turning the sheave at the top.',
+    ],
+    summarySections: [
+      {
+        title: 'The Balance of Weight',
+        text: 'Most elevators use a counterweight system. The counterweight is usually equal to the weight of the empty car plus about half of its maximum passenger load. This balance means the motor only has to move the difference in weight, saving a massive amount of energy compared to lifting the full weight directly.',
+      },
+      {
+        title: 'The Motor and Sheave',
+        text: 'At the top of the elevator shaft sits the hoisting machine. An electric motor turns a large wheel with grooves, called a sheave. The steel cables connecting the car and counterweight pass over this sheave. The friction between the cables and the grooves provides the grip needed to move the car up and down.',
+      },
+      {
+        title: 'Safety Brakes and the Governor',
+        text: 'Elevators have multiple backup safety systems. The most famous is the overspeed governor. If the elevator moves downward too quickly, centrifugal force in the governor mechanism trips a switch that cuts power to the motor and deploys physical brakes on the guide rails, stopping the car safely even if all cables fail.',
+      },
+      {
+        title: 'The Guide Rails',
+        text: 'Both the elevator car and the counterweight run along vertical steel guide rails. These rails prevent the car from swinging back and forth, ensuring a smooth ride, and they provide the gripping surface for the safety brakes.',
+      },
+      {
+        title: 'Doors and Sensors',
+        text: 'The doors of an elevator are highly engineered for safety. The inner car door is driven by a motor, while the outer hallway doors have no motor and are only pulled open when the car aligns with the floor. Light sensors and pressure switches ensure the doors reopen if something blocks them.',
+      },
+      {
+        title: 'The Big Picture',
+        text: 'An elevator is a remarkably efficient and safe machine built around counterbalance, friction, and redundant safety mechanisms. It transformed modern architecture by making skyscrapers practical and safe for everyday use.',
+      },
+    ],
+    quickPrompts: [
+      'Why is a counterweight used in an elevator?',
+      'What happens if the elevator cables break?',
+      'How do the doors know when to open?',
+    ],
+  },
+  {
+    id: 'drone',
+    name: 'Drone',
+    category: 'Flight Systems',
+    tagline: 'Understand how quadcopters balance, steer, and fly.',
+    intro:
+      'A drone uses four rotors to control lift, pitch, roll, and yaw through rapid adjustments in motor speed.',
+    summary:
+      'This lesson explains how flight controllers and sensors manage multiple motors to keep the drone stable.',
+    lessonTitle: 'How a Drone works',
+    videoId: 'N_XneaFmOmU',
+    sourceKind: 'video',
+    sourceLabel: 'Open verified Animagraffs lesson',
+    sourceUrl: 'https://youtu.be/N_XneaFmOmU?si=FY63vXQHOwQ9c9mx',
+    searchQuery: 'Animagraffs Drone',
+    duration: '8 min lesson',
+    level: 'Middle school to adult learners',
+    focusLabel: 'Multi-rotor flight',
+    misconception:
+      'Students often think a drone steers like an airplane with flaps or a rudder. In reality, a quadcopter steers purely by changing the speeds of its four fixed rotors.',
+    studyChecklist: [
+      'Notice how opposite diagonal rotors spin in the same direction.',
+      'Watch how speeding up the rear rotors causes the drone to pitch forward.',
+      'Observe the role of the flight controller in maintaining stability.',
+    ],
+    outcomes: ['Rotor speed control', 'Pitch, roll, and yaw', 'Flight controller operation'],
+    systems: [
+      { title: 'Rotors and Motors', description: 'Four independent motors generate lift and directional control.' },
+      { title: 'Flight Controller', description: 'The brain of the drone that constantly adjusts motor speeds.' },
+      { title: 'Sensors', description: 'Gyroscopes and accelerometers feed orientation data to the controller.' },
+    ],
+    visualExplainers: [
+      'Observe how diagonal pairs of propellers cancel out rotational torque.',
+      'See how slowing down one side makes the drone roll.',
+      'Watch the sensors communicate with the flight controller.',
+    ],
+    summarySections: [
+      {
+        title: 'The Basics of Quadcopter Flight',
+        text: 'A quadcopter drone flies by using four spinning propellers to push air downward, creating upward lift. Unlike a helicopter which has a complex mechanical rotor head to change blade angles, a drone uses fixed-pitch blades. It maneuvers entirely by precisely varying the speed of its four electric motors.',
+      },
+      {
+        title: 'Balancing Torque',
+        text: 'If all four propellers spun the same way, the drone would constantly spin out of control due to torque reaction. To prevent this, two diagonal propellers spin clockwise, while the other two spin counter-clockwise. When all four spin at the same speed, their rotational forces cancel each other out, keeping the drone facing straight.',
+      },
+      {
+        title: 'Pitch, Roll, and Yaw',
+        text: 'To fly forward (pitch), the rear motors spin faster than the front motors, tilting the drone so lift pushes it forward. To fly sideways (roll), the motors on one side spin faster. To rotate in place (yaw), the drone speeds up two diagonal motors spinning in one direction and slows down the other two, unbalancing the torque intentionally.',
+      },
+      {
+        title: 'The Flight Controller',
+        text: 'A human cannot adjust four motor speeds fast enough to keep a drone stable. The flight controller acts as the brain. It takes commands from the pilots radio and translates them into thousands of tiny motor adjustments every second to keep the drone flying exactly where it should.',
+      },
+      {
+        title: 'Sensors and Stability',
+        text: 'The flight controller relies on a sensor package called an IMU (Inertial Measurement Unit), which contains microscopic gyroscopes and accelerometers. These sensors tell the drone exactly how it is tilted and moving in 3D space, allowing it to instantly correct for wind gusts or unbalanced weight.',
+      },
+      {
+        title: 'The Big Picture',
+        text: 'A drone is a triumph of software over hardware. Instead of complex mechanical linkages, it uses incredibly fast computers and sensors to manipulate four simple spinning blades into a perfectly stable, highly agile flying machine.',
+      },
+    ],
+    quickPrompts: [
+      'How does a drone fly forward without tilting its propellers?',
+      'Why do the propellers spin in opposite directions?',
+      'What does the flight controller do?',
+    ],
+  },
+  {
+    id: 'refrigerator',
+    name: 'Refrigerator',
+    category: 'Thermodynamics Systems',
+    tagline: 'Understand how compressors, refrigerant, and phase changes cool things down.',
+    intro:
+      'A refrigerator does not "make cold." Instead, it pumps heat out of an insulated box using the physics of evaporation and condensation.',
+    summary:
+      'This lesson explains the refrigeration cycle, showing how a special fluid changes from liquid to gas and back to move thermal energy.',
+    lessonTitle: 'How a Refrigerator Works',
+    videoId: 'JUQ2Aw8W3BI',
+    sourceKind: 'video',
+    sourceLabel: 'Open verified Animagraffs lesson',
+    sourceUrl: 'https://youtu.be/JUQ2Aw8W3BI?si=DbZFxWy9UBTrA-pK',
+    searchQuery: 'Animagraffs Refrigerator',
+    duration: '10 min lesson',
+    level: 'Middle school to adult learners',
+    focusLabel: 'Heat transfer and phase changes',
+    misconception:
+      'Many people think a fridge works by blowing cold air into the box. In reality, it works by absorbing heat from the inside air and dumping that heat outside the box.',
+    studyChecklist: [
+      'Trace the path of the refrigerant through the four main components.',
+      'Notice where the fluid is a high-pressure liquid and where it is a low-pressure gas.',
+      'Observe how the expansion valve acts like a spray nozzle to drop the temperature.',
+    ],
+    outcomes: ['Refrigeration cycle', 'Evaporation and condensation', 'Role of the compressor'],
+    systems: [
+      { title: 'Compressor', description: 'The pump that pressurizes the refrigerant gas, making it hot.' },
+      { title: 'Condenser Coils', description: 'The outer coils where the hot gas releases heat and turns into a liquid.' },
+      { title: 'Evaporator Coils', description: 'The inner coils where the cold liquid absorbs heat and turns into a gas.' },
+    ],
+    visualExplainers: [
+      'Watch the refrigerant change colors as it gets hotter and colder.',
+      'See the expansion valve instantly drop the pressure and temperature.',
+      'Notice the fans moving air over the coils to speed up heat transfer.',
+    ],
+    summarySections: [
+      {
+        title: 'The Illusion of "Making Cold"',
+        text: 'In physics, cold is not a substance; it is just the absence of heat. A refrigerator cannot create cold. Instead, it acts as a heat pump, constantly absorbing thermal energy from the food inside and rejecting that thermal energy into the kitchen air outside.',
+      },
+      {
+        title: 'The Magic Fluid: Refrigerant',
+        text: 'The entire system relies on a special chemical called a refrigerant. This fluid is designed to boil (turn from liquid to gas) at very low temperatures. By carefully manipulating the pressure of this fluid, the refrigerator can control exactly when and where it boils and condenses.',
+      },
+      {
+        title: 'The Compressor: The Heart of the System',
+        text: 'The cycle starts at the compressor, an electric pump. The compressor takes low-pressure refrigerant gas and squeezes it tightly. When a gas is compressed, its temperature shoots up. The refrigerant leaves the compressor as a very hot, high-pressure gas.',
+      },
+      {
+        title: 'The Condenser: Dumping the Heat',
+        text: 'This hot gas flows into the condenser coils on the back or bottom of the fridge. Because the gas is hotter than the room air, heat flows out of the gas and into the room. As it cools down under high pressure, the gas condenses into a warm liquid.',
+      },
+      {
+        title: 'The Expansion Valve: The Magic Choke Point',
+        text: 'The warm, high-pressure liquid then hits the expansion valve. This is a tiny restriction in the pipe. As the fluid squeezes through, it expands into a larger area, causing its pressure to plummet. This sudden drop in pressure causes a massive drop in temperature, turning it into a freezing cold liquid-gas mixture.',
+      },
+      {
+        title: 'The Evaporator: Absorbing the Heat',
+        text: 'The freezing cold fluid flows through the evaporator coils inside the fridge. A fan blows the inside air over these cold coils. The fluid absorbs heat from the air and boils into a low-pressure gas. The cooled air circulates back to chill the food, while the warm gas is sucked back into the compressor to start the cycle again.',
+      },
+    ],
+    quickPrompts: [
+      'Why does the back of a refrigerator feel warm?',
+      'What happens to the refrigerant in the expansion valve?',
+      'Can a refrigerator cool a room if you leave the door open?',
+    ],
+  },
+  {
+    id: 'mri',
+    name: 'MRI Machine',
+    category: 'Medical Imaging',
+    tagline: 'See how powerful magnets and radio waves look inside the human body.',
+    intro:
+      'An MRI (Magnetic Resonance Imaging) scanner uses incredibly strong magnetic fields and radio waves to map the water inside our bodies in 3D.',
+    summary:
+      'This lesson explores the super-cooled magnets, the gradient coils, and the physics of nuclear magnetic resonance that make clear internal imaging possible.',
+    lessonTitle: 'How an MRI Machine Works',
+    videoId: 'nFkBhUYynUw',
+    sourceKind: 'video',
+    sourceLabel: 'Open verified Animagraffs lesson',
+    sourceUrl: 'https://youtu.be/nFkBhUYynUw?si=RNnsoE6ADQvZ_Bxh',
+    searchQuery: 'Animagraffs MRI Machine',
+    duration: '15 min lesson',
+    level: 'High school to adult learners',
+    focusLabel: 'Magnetism and resonance',
+    misconception:
+      'Many people confuse MRI with X-rays. While X-rays use ionizing radiation to see dense bone, MRI uses safe magnetic fields to see soft tissue based on its water content.',
+    studyChecklist: [
+      'Understand the role of the main superconducting magnet.',
+      'Notice how gradient coils allow the machine to target specific 3D slices of the body.',
+      'Observe how radio frequency pulses flip hydrogen protons.',
+    ],
+    outcomes: ['Magnetic resonance', 'Superconductivity', '3D image reconstruction'],
+    systems: [
+      { title: 'Superconducting Magnet', description: 'Creates a massive, uniform magnetic field that aligns hydrogen atoms.' },
+      { title: 'Gradient Coils', description: 'Smaller magnets that alter the main field to locate signals in 3D space.' },
+      { title: 'RF Coils', description: 'Antennas that send radio waves into the body and listen for the echoes returning from protons.' },
+    ],
+    visualExplainers: [
+      'Watch how the main magnet aligns the protons in water molecules.',
+      'See the radio pulse knock the protons out of alignment.',
+      'Notice how the gradient coils create a magnetic slope to isolate a single slice of tissue.',
+    ],
+    summarySections: [
+      {
+        title: 'The Human Body is Mostly Water',
+        text: 'The fundamental principle behind an MRI is that the human body is mostly water, and water contains hydrogen atoms. The nucleus of a hydrogen atom is a single proton, which acts like a tiny bar magnet with its own north and south pole. Normally, these tiny magnets spin randomly, pointing in all directions.',
+      },
+      {
+        title: 'The Main Superconducting Magnet',
+        text: 'The core of an MRI is a massive electromagnet made of superconducting wire bathed in liquid helium at nearly absolute zero. This creates a magnetic field tens of thousands of times stronger than the Earth\'s magnetic field. When a patient enters the scanner, this field forces the hydrogen protons in their body to align with it.',
+      },
+      {
+        title: 'The Radio Frequency (RF) Pulse',
+        text: 'Once the protons are aligned, the MRI machine fires a precise burst of radio waves (an RF pulse) at the body. This energy knocks the protons out of their alignment. When the RF pulse is turned off, the protons snap back into alignment with the main magnetic field. As they snap back, they release the energy they absorbed as a weak radio signal, or "echo."',
+      },
+      {
+        title: 'Listening for the Echo',
+        text: 'Special antennas called RF coils are placed around the body part being scanned. These coils listen for the radio echoes released by the protons. Different tissues (like fat, muscle, and tumor cells) have different amounts of water and release their echoes at slightly different speeds, providing the contrast needed to tell them apart.',
+      },
+      {
+        title: 'Gradient Coils for 3D Mapping',
+        text: 'If the MRI only used the main magnet and RF pulses, it would just get one big jumbled echo from the whole body. To fix this, smaller electromagnets called gradient coils are turned on and off rapidly. They slightly alter the strength of the magnetic field from head to toe, left to right, and front to back. This allows the machine to target and map protons in exact 3D locations.',
+      },
+      {
+        title: 'The Big Picture',
+        text: 'An MRI machine is an incredible feat of physics and engineering. It uses super-cooled magnets, carefully tuned radio waves, and complex math to safely peer inside the human body and create detailed 3D maps of our internal soft tissues without using any harmful radiation.',
+      },
+    ],
+    quickPrompts: [
+      'Why does an MRI machine need liquid helium?',
+      'What do the gradient coils actually do?',
+      'Why is MRI better for looking at the brain than an X-ray?',
+    ],
+  },
+  {
+    id: 'motor',
+    name: 'Electric Motor',
+    category: 'Electromagnetism',
+    tagline: 'See how magnetism and electricity turn wires into rotational power.',
+    intro:
+      'An electric motor converts electrical energy into mechanical energy using the interactions between magnetic fields and current-carrying wire coils.',
+    summary:
+      'This lesson maps the stator, rotor, commutator, and the continuous push-and-pull of magnetic forces that make motors spin.',
+    lessonTitle: 'How an Electric Motor Works',
+    videoId: 'CWulQ1ZSE3c',
+    sourceKind: 'video',
+    sourceLabel: 'Open verified Animagraffs lesson',
+    sourceUrl: 'https://youtu.be/CWulQ1ZSE3c?si=pXIF6BfjbPEZFE97',
+    searchQuery: 'Animagraffs Electric Motor',
+    duration: '12 min lesson',
+    level: 'Middle school to adult learners',
+    focusLabel: 'Electromagnetic rotation',
+    misconception:
+      'Students often think electricity directly powers movement. In reality, electricity is used to create temporary magnets that push against permanent magnets to cause rotation.',
+    studyChecklist: [
+      'Observe the permanent magnets in the stator.',
+      'Watch how the commutator flips the electrical current as the rotor turns.',
+      'Notice the constant repulsion and attraction between the electromagnets and permanent magnets.',
+    ],
+    outcomes: ['Electromagnetism', 'Commutator function', 'Rotational mechanics'],
+    systems: [
+      { title: 'Stator', description: 'The stationary outer part containing permanent magnets.' },
+      { title: 'Rotor (Armature)', description: 'The spinning inner part with coils of wire that become electromagnets.' },
+      { title: 'Commutator & Brushes', description: 'The sliding electrical connection that flips the current direction to keep the motor spinning.' },
+    ],
+    visualExplainers: [
+      'Watch the magnetic field lines interact as current flows.',
+      'See the exact moment the brushes cross the commutator gap to reverse polarity.',
+      'Notice how adding more coils smooths out the rotational force.',
+    ],
+    summarySections: [
+      {
+        title: 'Magnets Pushing and Pulling',
+        text: 'The fundamental principle of an electric motor is magnetism. We know that opposite magnetic poles attract, and identical poles repel. A motor surrounds a central spinning piece with permanent magnets, and uses electromagnetism to constantly push and pull against them.',
+      },
+      {
+        title: 'The Electromagnet (Rotor)',
+        text: 'When electricity flows through a coiled wire, it creates a magnetic field, turning the wire into an electromagnet. In a motor, this coil is called the armature or rotor. By sending electricity through the rotor, it becomes a magnet that either attracts or repels the permanent magnets on the outside.',
+      },
+      {
+        title: 'The Need to Flip Polarity',
+        text: 'If the rotor just became a magnet, it would spin halfway, align with the opposite permanent magnet, and stop dead. To keep it spinning, the motor must instantly flip the north and south poles of the electromagnet just as it reaches the alignment point. It does this by reversing the direction of the electricity.',
+      },
+      {
+        title: 'The Commutator and Brushes',
+        text: 'To reverse the electricity while the rotor is spinning, DC motors use a clever mechanical switch called a commutator. It is a split ring attached to the rotor. Stationary carbon "brushes" slide against this ring to deliver power. Every half-turn, the brushes slide across the split to the other half of the ring, reversing the current flow and flipping the magnetic field.',
+      },
+      {
+        title: 'Smoothing the Spin',
+        text: 'A simple motor with only one coil will be jerky and might get stuck if it stops in the wrong position. Real motors use multiple coils wrapped at different angles, with a commutator divided into many small segments. This ensures there is always a coil in the perfect position to deliver maximum rotational push.',
+      },
+      {
+        title: 'The Big Picture',
+        text: 'Electric motors are pure, continuous electromagnetic leverage. By using a clever sliding switch to constantly flip the poles of an electromagnet, they trick magnetic forces into chasing each other in an endless circle, converting electrical current directly into spinning mechanical power.',
+      },
+    ],
+    quickPrompts: [
+      'Why does the commutator have a gap in it?',
+      'What is the difference between the stator and the rotor?',
+      'How does adding more coils change how the motor runs?',
+    ],
+  },
+  {
+    id: 'printer',
+    name: '3D Printer',
+    category: 'Manufacturing',
+    tagline: 'Discover how motors, heat, and precise code build objects layer by layer.',
+    intro:
+      'A 3D printer transforms digital models into physical reality by precisely melting and stacking thin layers of plastic.',
+    summary:
+      'This lesson explores the extruder, hot end, stepper motors, and the coordinate systems that make precise 3D manufacturing possible.',
+    lessonTitle: 'How a 3D Printer Works',
+    videoId: 'f94CnlQ0eq4',
+    sourceKind: 'video',
+    sourceLabel: 'Open verified Animagraffs lesson',
+    sourceUrl: 'https://youtu.be/f94CnlQ0eq4?si=C-DHGPLrappZTHCH',
+    searchQuery: 'Animagraffs 3D Printer',
+    duration: '14 min lesson',
+    level: 'Middle school to adult learners',
+    focusLabel: 'Additive manufacturing',
+    misconception:
+      'Students often think the printer just "pours" plastic into a mold. In reality, it calculates an exact path and draws the object one microscopic layer at a time.',
+    studyChecklist: [
+      'Observe how the filament is pushed by the extruder gears.',
+      'Notice how the hot end melts the plastic right before it leaves the nozzle.',
+      'Watch how the stepper motors control movement in the X, Y, and Z axes.',
+    ],
+    outcomes: ['Extrusion mechanics', 'XYZ coordinate movement', 'Thermal control'],
+    systems: [
+      { title: 'Extruder & Hot End', description: 'The system that feeds raw plastic filament, melts it, and pushes it through a tiny nozzle.' },
+      { title: 'Motion System', description: 'Stepper motors and belts that move the print head with sub-millimeter accuracy.' },
+      { title: 'Motherboard', description: 'The brain of the printer that translates G-code into precise electrical signals.' },
+    ],
+    visualExplainers: [
+      'Watch the filament feed gear bite into the plastic wire.',
+      'See the cooling fan solidify the plastic as soon as it leaves the nozzle.',
+      'Notice the precise coordination of the X, Y, and Z axes working together.',
+    ],
+    summarySections: [
+      {
+        title: 'Building from the Ground Up',
+        text: 'Unlike traditional manufacturing which carves material away from a block, 3D printing is additive. It builds objects from the bottom up, laying down one incredibly thin layer of melted plastic at a time until the final 3D shape is complete.',
+      },
+      {
+        title: 'The Filament and Extruder',
+        text: 'The raw material is usually a spool of plastic wire called filament. A motor known as the extruder uses sharp gears to bite into this filament and push it forcefully through a tube toward the printing nozzle.',
+      },
+      {
+        title: 'The Hot End and Nozzle',
+        text: 'At the print head, the filament enters the hot end. A heater block brings the temperature up to around 200°C (400°F), turning the solid plastic into a thick liquid. The extruder pushes this melted plastic out through a microscopic hole in the nozzle, like icing a very precise cake.',
+      },
+      {
+        title: 'Cooling for Precision',
+        text: 'As soon as the hot plastic leaves the nozzle, it must harden instantly so the next layer can be printed on top. To achieve this, a specialized cooling fan blows directly onto the freshly extruded plastic, locking it into its final shape.',
+      },
+      {
+        title: 'The Stepper Motors (X, Y, Z)',
+        text: 'To draw a shape, the printer must move the nozzle with extreme precision. It uses stepper motors—special electric motors that move in exact, tiny fractions of a rotation (steps). These motors use belts and threaded rods to move the print head left and right (X), forward and back (Y), and up and down (Z).',
+      },
+      {
+        title: 'The Motherboard and G-Code',
+        text: 'The printer is controlled by a motherboard that reads a file containing G-code. G-code is a list of thousands of coordinates telling the printer exactly where to move, how fast to go, and how much plastic to extrude at every millisecond of the print.',
+      },
+    ],
+    quickPrompts: [
+      'Why is there a cooling fan pointing at the nozzle?',
+      'What is the difference between an ordinary motor and a stepper motor?',
+      'How does the printer know what shape to draw?',
+    ],
+  },
+  {
+    id: 'transformer',
+    name: 'Electrical Transformer',
+    category: 'Electromagnetism',
+    tagline: 'Understand how voltage is stepped up or down for power distribution.',
+    intro:
+      'A transformer changes the voltage of an alternating current (AC) circuit using the principles of electromagnetic induction.',
+    summary:
+      'This lesson explores the primary and secondary coils, the iron core, and how changing magnetic fields transfer power without moving parts.',
+    lessonTitle: 'How a Transformer Works',
+    videoId: '96Vekm8Ws4U',
+    sourceKind: 'video',
+    sourceLabel: 'Open verified Animagraffs lesson',
+    sourceUrl: 'https://youtu.be/96Vekm8Ws4U?si=fbHeCAe_m_yCN-6Z',
+    searchQuery: 'Animagraffs Transformer',
+    duration: '11 min lesson',
+    level: 'High school to adult learners',
+    focusLabel: 'Voltage and induction',
+    misconception:
+      'Many people think transformers generate electricity. In reality, they only convert existing electrical power from high voltage/low current to low voltage/high current (or vice versa).',
+    studyChecklist: [
+      'Observe the difference in the number of turns between the primary and secondary coils.',
+      'Notice how the iron core directs the magnetic field lines.',
+      'Watch how alternating current is necessary to create a constantly changing magnetic field.',
+    ],
+    outcomes: ['Electromagnetic induction', 'Step-up and step-down voltage', 'AC power transmission'],
+    systems: [
+      { title: 'Primary Coil', description: 'The input wire that creates a fluctuating magnetic field when alternating current flows through it.' },
+      { title: 'Secondary Coil', description: 'The output wire where the fluctuating magnetic field induces a new alternating current.' },
+      { title: 'Iron Core', description: 'A highly permeable magnetic pathway that links the two coils together.' },
+    ],
+    visualExplainers: [
+      'Watch the magnetic flux flow continuously around the iron core.',
+      'See how more turns on the secondary coil results in higher output voltage.',
+      'Notice the cooling oil and fins used in large industrial transformers to manage heat.',
+    ],
+    summarySections: [
+      {
+        title: 'The Need for Transformers',
+        text: 'To transmit electricity over long distances without losing all the energy to heat, power plants must send it at extremely high voltages. However, homes and appliances require low voltages to operate safely. Transformers are the essential machines that step this voltage up for transmission and step it back down for use.',
+      },
+      {
+        title: 'Electromagnetic Induction',
+        text: 'The fundamental physics behind a transformer is induction. When you pass a changing electrical current through a wire, it creates a fluctuating magnetic field. If you place a second wire inside that fluctuating magnetic field, a new electrical current will be induced in the second wire. Power jumps across empty space!',
+      },
+      {
+        title: 'The Iron Core',
+        text: 'To make this transfer efficient, both coils of wire are wrapped around a solid iron core. Iron is highly permeable to magnetic fields, meaning it easily guides the magnetic flux created by the primary coil directly into the center of the secondary coil without it spilling out into the surrounding air.',
+      },
+      {
+        title: 'Voltage is About the Ratio',
+        text: 'The magic of the transformer lies in the ratio of the wire wraps (turns). If the primary coil has 100 turns and the secondary coil has 10 turns, the voltage will be divided by 10 (stepped down). If you reverse it, the voltage is multiplied by 10 (stepped up).',
+      },
+      {
+        title: 'The Trade-off: Current',
+        text: 'A transformer cannot create free energy. Power (Watts) equals Voltage multiplied by Current (Amps). If a transformer steps the voltage up by 10x, it must simultaneously step the current down by 10x. This allows high-power lines to carry massive energy with very low current, reducing heat loss.',
+      },
+      {
+        title: 'Why We Use AC',
+        text: 'Transformers absolutely require Alternating Current (AC) to work. Induction only happens when a magnetic field is changing. Because AC is constantly reversing direction 50 or 60 times a second, its magnetic field is always expanding and collapsing, keeping the induction process alive. If you connected a transformer to a DC battery, it would do nothing.',
+      },
+    ],
+    quickPrompts: [
+      'Why cant transformers work with Direct Current (DC)?',
+      'What happens if the secondary coil has more turns than the primary coil?',
+      'Why is the iron core necessary?',
+    ],
+  }
 ]

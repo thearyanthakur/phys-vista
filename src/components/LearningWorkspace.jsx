@@ -1,8 +1,25 @@
 import { useEffect, useMemo, useState } from 'react'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import SectionHeader from './SectionHeader'
 import MachineDetails from './MachineDetails'
 import { MachineIcon, PlayIcon } from './icons'
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.1 }
+  }
+}
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] }
+  }
+}
 
 function VideoPanel({ copy, machine, settings }) {
   const lessonSearchUrl = `https://www.youtube.com/results?search_query=${encodeURIComponent(machine.searchQuery)}`
@@ -20,8 +37,14 @@ function VideoPanel({ copy, machine, settings }) {
   }, [languageCode, machine.videoId, settings.subtitlesEnabled])
 
   return (
-    <article className="border border-slate-200 bg-white p-6 dark:border-slate-800 dark:bg-dbtm-black sm:p-8">
-      <div className="flex flex-col gap-5 xl:flex-row xl:items-start xl:justify-between">
+    <motion.article 
+      variants={containerVariants} 
+      initial="hidden" 
+      whileInView="visible" 
+      viewport={{ once: true, margin: "-50px" }}
+      className="border border-slate-200 bg-white p-4 dark:border-slate-800 dark:bg-dbtm-black sm:p-6 md:p-8"
+    >
+      <motion.div variants={itemVariants} className="flex flex-col gap-5 xl:flex-row xl:items-start xl:justify-between">
         <div className="max-w-2xl">
           <div className="flex flex-wrap items-center gap-3">
             <span className="rounded-full bg-dbtm-yellow px-3 py-1 text-xs font-bold uppercase tracking-widest text-dbtm-black">
@@ -40,7 +63,7 @@ function VideoPanel({ copy, machine, settings }) {
               <MachineIcon machineId={machine.id} className="h-7 w-7" />
             </div>
             <div>
-              <h3 className="font-display text-4xl font-bold uppercase tracking-normal text-dbtm-black dark:text-white">{machine.name}</h3>
+              <h3 className="font-display text-3xl sm:text-4xl font-bold uppercase tracking-normal text-dbtm-black dark:text-white">{machine.name}</h3>
               <p className="mt-1 text-sm font-semibold uppercase tracking-widest text-slate-500 dark:text-slate-400">{machine.category}</p>
             </div>
           </div>
@@ -48,18 +71,10 @@ function VideoPanel({ copy, machine, settings }) {
           <p className="mt-6 text-base leading-relaxed text-slate-600 dark:text-slate-300">{machine.intro}</p>
         </div>
 
-        <a
-          href={actionUrl}
-          target="_blank"
-          rel="noreferrer"
-          className="inline-flex items-center gap-2 rounded-full bg-dbtm-black px-6 py-3 font-sans text-sm font-bold uppercase tracking-widest text-white transition-opacity hover:opacity-80 dark:bg-white dark:text-dbtm-black"
-        >
-          <PlayIcon className="h-4 w-4" />
-          {actionLabel}
-        </a>
-      </div>
 
-      <div className="mt-8 overflow-hidden bg-dbtm-black dark:border dark:border-slate-800">
+      </motion.div>
+
+      <motion.div variants={itemVariants} className="mt-8 overflow-hidden bg-dbtm-black dark:border dark:border-slate-800">
         <div className="aspect-video">
           {lessonEmbedUrl ? (
             <iframe
@@ -84,29 +99,29 @@ function VideoPanel({ copy, machine, settings }) {
             </div>
           )}
         </div>
-      </div>
+      </motion.div>
 
-      <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+      <motion.div variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true }} className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
         {[
           [copy.workspace.source, machine.lessonTitle || machine.name],
           [copy.workspace.lessonFit, machine.level],
           [copy.workspace.focus, machine.focusLabel],
           [copy.workspace.outcomes, machine.outcomes.join(', ')],
         ].map(([label, value]) => (
-          <div key={label} className="border border-slate-200 bg-slate-50 p-5 dark:border-slate-800 dark:bg-dbtm-black">
+          <motion.div variants={itemVariants} key={label} className="border border-slate-200 bg-slate-50 p-4 sm:p-5 dark:border-slate-800 dark:bg-dbtm-black">
             <div className="text-xs font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400">{label}</div>
             <div className="mt-2 text-sm font-semibold leading-relaxed text-dbtm-black dark:text-white">{value}</div>
-          </div>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
 
-      <div className="mt-4 grid gap-4 lg:grid-cols-[1.05fr_0.95fr]">
-        <div className="border border-slate-200 bg-dbtm-yellow p-6 dark:border-dbtm-yellow dark:bg-dbtm-black">
+      <motion.div variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true }} className="mt-4 grid gap-4 lg:grid-cols-[1.05fr_0.95fr]">
+        <motion.div variants={itemVariants} className="border border-slate-200 bg-dbtm-yellow p-4 sm:p-6 dark:border-dbtm-yellow dark:bg-dbtm-black">
           <div className="text-xs font-bold uppercase tracking-widest text-dbtm-black dark:text-dbtm-yellow">{copy.workspace.misconception}</div>
           <p className="mt-4 text-sm font-semibold leading-relaxed text-dbtm-black dark:text-white">{machine.misconception}</p>
-        </div>
+        </motion.div>
 
-        <div className="border border-slate-200 bg-slate-50 p-6 dark:border-slate-800 dark:bg-dbtm-black">
+        <motion.div variants={itemVariants} className="border border-slate-200 bg-slate-50 p-4 sm:p-6 dark:border-slate-800 dark:bg-dbtm-black">
           <div className="text-xs font-bold uppercase tracking-widest text-dbtm-black dark:text-white">{copy.workspace.focusOn}</div>
           <ul className="mt-4 space-y-3 text-sm font-semibold leading-relaxed text-slate-700 dark:text-slate-300">
             {machine.studyChecklist.map((item) => (
@@ -116,9 +131,9 @@ function VideoPanel({ copy, machine, settings }) {
               </li>
             ))}
           </ul>
-        </div>
-      </div>
-    </article>
+        </motion.div>
+      </motion.div>
+    </motion.article>
   )
 }
 
@@ -137,18 +152,24 @@ function SummaryExplorer({ copy, machine }) {
   const activeBullets = activeSection?.bullets ?? textToBullets(activeSection?.text || '')
 
   return (
-    <article className="mt-6 border border-slate-200 bg-white p-6 dark:border-slate-800 dark:bg-dbtm-black sm:p-8">
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+    <motion.article 
+      variants={containerVariants} 
+      initial="hidden" 
+      whileInView="visible" 
+      viewport={{ once: true, margin: "-50px" }}
+      className="mt-6 border border-slate-200 bg-white p-4 dark:border-slate-800 dark:bg-dbtm-black sm:p-6 md:p-8"
+    >
+      <motion.div variants={itemVariants} className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <span className="rounded-full bg-dbtm-yellow px-3 py-1 text-xs font-bold uppercase tracking-widest text-dbtm-black">
             {copy.workspace.summaryEyebrow}
           </span>
-          <h3 className="mt-6 font-display text-4xl font-bold uppercase tracking-normal text-dbtm-black dark:text-white">{copy.workspace.summaryTitle}</h3>
+          <h3 className="mt-6 font-display text-3xl sm:text-4xl font-bold uppercase tracking-normal text-dbtm-black dark:text-white">{copy.workspace.summaryTitle}</h3>
         </div>
         <p className="max-w-xl text-sm leading-relaxed text-slate-600 dark:text-slate-400">{copy.workspace.summaryDescription}</p>
-      </div>
+      </motion.div>
 
-      <div className="mt-10 grid gap-8 xl:grid-cols-[22rem_minmax(0,1fr)]">
+      <motion.div variants={containerVariants} className="mt-10 grid gap-8 xl:grid-cols-[22rem_minmax(0,1fr)]">
         <div className="flex flex-col gap-2">
           {machine.summarySections.map((section, index) => {
             const isActive = index === activeIndex
@@ -166,7 +187,7 @@ function SummaryExplorer({ copy, machine }) {
                 }`}
               >
                 <div className="p-4 sm:p-5">
-                  <h4 className={`font-display text-xl font-bold uppercase tracking-widest ${isActive ? 'text-dbtm-black dark:text-white' : 'text-slate-500 dark:text-slate-400'}`}>
+                  <h4 className={`font-display text-lg sm:text-xl font-bold uppercase tracking-widest ${isActive ? 'text-dbtm-black dark:text-white' : 'text-slate-500 dark:text-slate-400'}`}>
                     {index + 1}. {section.title}
                   </h4>
                   <p className="mt-2 text-xs font-medium leading-relaxed text-slate-500 dark:text-slate-400">
@@ -179,7 +200,14 @@ function SummaryExplorer({ copy, machine }) {
           })}
         </div>
 
-        <div className="bg-slate-50 p-6 dark:bg-slate-900/50 sm:p-8">
+        <motion.div 
+          layout
+          key={activeIndex}
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.4 }}
+          className="bg-slate-50 p-6 dark:bg-slate-900/50 sm:p-8"
+        >
           <div className="flex flex-wrap items-center gap-3">
             <span className="rounded-full bg-dbtm-black px-3 py-1 text-xs font-bold uppercase tracking-widest text-white dark:bg-white dark:text-dbtm-black">
               {copy.workspace.activeTopic}
@@ -189,7 +217,7 @@ function SummaryExplorer({ copy, machine }) {
             </span>
           </div>
 
-          <h3 className="mt-6 font-display text-3xl font-bold uppercase tracking-normal text-dbtm-black dark:text-white sm:text-4xl">{activeSection.title}</h3>
+          <h3 className="mt-6 font-display text-2xl sm:text-3xl lg:text-4xl font-bold uppercase tracking-normal text-dbtm-black dark:text-white">{activeSection.title}</h3>
 
           <ul className="mt-8 space-y-4">
             {activeBullets.map((bullet, index) => (
@@ -199,9 +227,9 @@ function SummaryExplorer({ copy, machine }) {
               </li>
             ))}
           </ul>
-        </div>
-      </div>
-    </article>
+        </motion.div>
+      </motion.div>
+    </motion.article>
   )
 }
 
@@ -209,26 +237,29 @@ function LearningWorkspace({ children, copy, machine, settings }) {
   return (
     <section id="workspace" className="section-shell py-16 sm:py-24 lg:py-32">
       <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.05 }}
         key={machine.id}
       >
-        <SectionHeader
-          eyebrow={copy.workspace.eyebrow}
-          title={copy.workspace.title.replace('{machineName}', machine.name)}
-          description={machine.summary}
-        />
+        <motion.div variants={itemVariants}>
+          <SectionHeader
+            eyebrow={copy.workspace.eyebrow}
+            title={copy.workspace.title.replace('{machineName}', machine.name)}
+            description={machine.summary}
+          />
+        </motion.div>
 
         <div className="mt-12 grid gap-6 xl:grid-cols-[minmax(0,1.25fr)_24rem]">
-          <div className="grid gap-6">
+          <motion.div variants={itemVariants} className="grid gap-6">
             <VideoPanel copy={copy} machine={machine} settings={settings} />
             <SummaryExplorer copy={copy} machine={machine} />
-          </div>
-          <div className="xl:sticky xl:top-28 xl:self-start">
+          </motion.div>
+          <motion.div variants={itemVariants} className="xl:sticky xl:top-28 xl:self-start">
             <MachineDetails copy={copy} machine={machine} />
             {children}
-          </div>
+          </motion.div>
         </div>
       </motion.div>
     </section>
