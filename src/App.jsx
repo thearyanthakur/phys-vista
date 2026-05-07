@@ -289,9 +289,9 @@ function App() {
           role: 'assistant',
           text:
             isNetworkFetchError(error)
-              ? 'Phys-Guru could not connect to the backend. Start `npm.cmd run server` and open the app through the PhysVista server.'
+              ? 'Phys-Guru could not connect to the backend. Start `npm run dev` and open the app through the PhysVista server.'
               : error.message ||
-                'Phys-Guru is unavailable right now. Start `npm.cmd run server` and confirm the AI provider key is set.',
+                'Phys-Guru is unavailable right now. Start `npm run dev` and confirm the AI provider key is set.',
         },
       ])
     } finally {
