@@ -15,12 +15,16 @@ import { usePhysVistaSettings } from './settings/usePhysVistaSettings'
 
 function getApiBaseCandidates() {
   const configuredBaseUrl = import.meta.env.VITE_API_BASE_URL?.replace(/\/$/, '')
+  const isBrowser = typeof window !== 'undefined'
+  const isLocalPage =
+    isBrowser &&
+    ['localhost', '127.0.0.1'].includes(window.location.hostname)
 
-  if (configuredBaseUrl) {
+  if (configuredBaseUrl && (!configuredBaseUrl.includes('localhost') || isLocalPage)) {
     return [configuredBaseUrl]
   }
 
-  if (typeof window === 'undefined') {
+  if (!isBrowser) {
     return ['http://localhost:8787']
   }
 
@@ -30,9 +34,19 @@ function getApiBaseCandidates() {
     candidates.push('')
   }
 
-  candidates.push('http://localhost:8787')
+  if (isLocalPage || window.location.protocol === 'file:') {
+    candidates.push('http://localhost:8787')
+  }
 
   return [...new Set(candidates)]
+}
+
+function getBackendUnavailableMessage() {
+  if (typeof window !== 'undefined' && !['localhost', '127.0.0.1'].includes(window.location.hostname)) {
+    return 'Phys-Guru could not reach the deployed backend. Add the Vercel `/api` functions and set `OPENROUTER_API_KEY` in your Vercel project environment variables.'
+  }
+
+  return 'Phys-Guru could not connect to the backend. Run `npm run dev` and open `http://localhost:5173`, or run `npm run build` then `npm run server` and open `http://localhost:8787`.'
 }
 
 function createIntroMessage(machine, language) {
@@ -289,7 +303,7 @@ function App() {
           role: 'assistant',
           text:
             isNetworkFetchError(error)
-              ? 'Phys-Guru could not connect to the backend. Start `npm run dev` and open the app through the PhysVista server.'
+              ? getBackendUnavailableMessage()
               : error.message ||
                 'Phys-Guru is unavailable right now. Start `npm run dev` and confirm the AI provider key is set.',
         },

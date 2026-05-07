@@ -4,10 +4,10 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "concurrently \"vite\" \"node server.js\"",
+    "dev": "concurrently \"node scripts/dev-client.mjs\" \"node server.js\"",
     "server": "node server.js",
-    "build": "vite build",
-    "preview": "vite preview"
+    "build": "node scripts/build-client.mjs",
+    "preview": "node scripts/preview-client.mjs"
   },
   "dependencies": {
     "cors": "^2.8.5",
