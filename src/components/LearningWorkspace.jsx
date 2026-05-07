@@ -26,15 +26,28 @@ function VideoPanel({ copy, machine, settings }) {
   const actionUrl = machine.sourceUrl || lessonSearchUrl
   const actionLabel = machine.sourceLabel || 'Find on YouTube'
   const languageCode = settings.language === 'hi' ? 'hi' : settings.language === 'te' ? 'te' : 'en'
+
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false)
+  useEffect(() => {
+    setIsVideoPlaying(false)
+  }, [machine.id])
+
   const lessonEmbedUrl = useMemo(() => {
     if (!machine.videoId) return null
-    const params = new URLSearchParams({ rel: '0', modestbranding: '1' })
+    const params = new URLSearchParams({ 
+      rel: '0', 
+      modestbranding: '1', 
+      autoplay: '1',
+      disablekb: '1'
+    })
     if (settings.subtitlesEnabled) {
       params.set('cc_load_policy', '1')
       params.set('cc_lang_pref', languageCode)
     }
     return `https://www.youtube-nocookie.com/embed/${machine.videoId}?${params.toString()}`
   }, [languageCode, machine.videoId, settings.subtitlesEnabled])
+
+  const thumbnailUrl = machine.videoId ? `https://img.youtube.com/vi/${machine.videoId}/maxresdefault.jpg` : null
 
   return (
     <motion.article 
@@ -70,23 +83,38 @@ function VideoPanel({ copy, machine, settings }) {
 
           <p className="mt-6 text-base leading-relaxed text-slate-600 dark:text-slate-300">{machine.intro}</p>
         </div>
-
-
       </motion.div>
 
       <motion.div variants={itemVariants} className="mt-8 overflow-hidden bg-dbtm-black dark:border dark:border-slate-800">
-        <div className="aspect-video">
+        <div className="aspect-video relative group">
           {lessonEmbedUrl ? (
-            <iframe
-              src={lessonEmbedUrl}
-              title={machine.name}
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerPolicy="strict-origin-when-cross-origin"
-              allowFullScreen
-              className="h-full w-full border-0"
-            />
+            isVideoPlaying ? (
+              <iframe
+                src={lessonEmbedUrl}
+                title={machine.name}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
+                className="h-full w-full border-0 absolute inset-0 z-10"
+              />
+            ) : (
+              <button 
+                onClick={() => setIsVideoPlaying(true)}
+                className="absolute inset-0 w-full h-full flex items-center justify-center bg-slate-900 cursor-pointer overflow-hidden z-10"
+                aria-label="Play Video"
+              >
+                <img 
+                  src={thumbnailUrl} 
+                  alt={machine.name} 
+                  className="absolute inset-0 w-full h-full object-cover opacity-60 transition-opacity duration-300 group-hover:opacity-40"
+                />
+                <div className="relative z-20 flex h-20 w-20 items-center justify-center rounded-full bg-dbtm-yellow text-dbtm-black shadow-[0_0_40px_rgba(250,204,21,0.4)] transition-transform duration-300 group-hover:scale-110">
+                  <PlayIcon className="h-8 w-8 ml-1" />
+                </div>
+              </button>
+            )
           ) : (
-            <div className="flex h-full flex-col justify-between bg-slate-900 p-6 text-white sm:p-8">
+            <div className="flex h-full flex-col justify-between bg-slate-900 p-6 text-white sm:p-8 relative z-10">
               <div className="inline-flex items-start">
                 <span className="rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-white">
                   {machine.sourceKind === 'article' ? copy.workspace.source : copy.workspace.ready}
@@ -113,25 +141,6 @@ function VideoPanel({ copy, machine, settings }) {
             <div className="mt-2 text-sm font-semibold leading-relaxed text-dbtm-black dark:text-white">{value}</div>
           </motion.div>
         ))}
-      </motion.div>
-
-      <motion.div variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true }} className="mt-4 grid gap-4 lg:grid-cols-[1.05fr_0.95fr]">
-        <motion.div variants={itemVariants} className="border border-slate-200 bg-dbtm-yellow p-4 sm:p-6 dark:border-dbtm-yellow dark:bg-dbtm-black">
-          <div className="text-xs font-bold uppercase tracking-widest text-dbtm-black dark:text-dbtm-yellow">{copy.workspace.misconception}</div>
-          <p className="mt-4 text-sm font-semibold leading-relaxed text-dbtm-black dark:text-white">{machine.misconception}</p>
-        </motion.div>
-
-        <motion.div variants={itemVariants} className="border border-slate-200 bg-slate-50 p-4 sm:p-6 dark:border-slate-800 dark:bg-dbtm-black">
-          <div className="text-xs font-bold uppercase tracking-widest text-dbtm-black dark:text-white">{copy.workspace.focusOn}</div>
-          <ul className="mt-4 space-y-3 text-sm font-semibold leading-relaxed text-slate-700 dark:text-slate-300">
-            {machine.studyChecklist.map((item) => (
-              <li key={item} className="flex gap-3">
-                <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-dbtm-yellow" />
-                <span>{item}</span>
-              </li>
-            ))}
-          </ul>
-        </motion.div>
       </motion.div>
     </motion.article>
   )

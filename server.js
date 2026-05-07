@@ -30,7 +30,7 @@ if (fs.existsSync(envPath)) {
 const app = express()
 const port = process.env.PORT || 8787
 const openRouterApiKey = process.env.OPENROUTER_API_KEY
-const openRouterModel = process.env.OPENROUTER_MODEL || 'openai/gpt-oss-20b:free'
+const openRouterModel = process.env.OPENROUTER_MODEL || 'google/gemini-2.5-flash:free'
 const openRouterSiteUrl = process.env.OPENROUTER_SITE_URL || `http://localhost:${port}`
 const openRouterAppName = process.env.OPENROUTER_APP_NAME || 'PhysVista'
   const openRouterFallbackModels = (process.env.OPENROUTER_FALLBACK_MODELS ||
@@ -67,12 +67,10 @@ function extractReplyContent(content) {
     .join('\n')
 }
 
-function countSentenceEndings(text) {
-  return (text.match(/[.!?](?:\s|$)/g) || []).length
-}
-
 function shouldStopReply(text) {
-  return text.length >= 420 || countSentenceEndings(text) >= 3
+  // Relaxed from 420 to 1000 characters to let the AI finish its sentence naturally
+  // The system prompt already instructs the AI to be concise.
+  return text.length >= 1000
 }
 
 function buildOpenRouterRequest(message, topic, signal) {

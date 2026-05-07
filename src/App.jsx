@@ -7,6 +7,7 @@ import MissionSection from './components/MissionSection'
 import TopNav from './components/TopNav'
 import SettingsPage from './components/settings/SettingsPage'
 import Toast from './components/settings/Toast'
+import QuizApp from './components/quiz/QuizApp'
 import { machines } from './data/machines'
 import { getLocalizedMachine } from './data/machineTranslations'
 import { getTranslations } from './settings/i18n'
@@ -110,6 +111,7 @@ function App() {
   const [isVisionVisible, setIsVisionVisible] = useState(false)
   const [toastMessage, setToastMessage] = useState('')
   const [isSettingsOpen, setIsSettingsOpen] = useState(false)
+  const [currentView, setCurrentView] = useState('home')
 
   useEffect(() => {
     if (!selectedMachine) {
@@ -314,10 +316,17 @@ function App() {
         onSettings={() => setIsSettingsOpen(true)}
         onVision={() => setIsVisionVisible(true)}
         onToggleNightMode={() => handleSettingChange('nightMode', !settings.nightMode)}
+        onNavigate={(view) => {
+          setCurrentView(view)
+          window.scrollTo({ top: 0, behavior: 'smooth' })
+        }}
         t={copy}
+        currentView={currentView}
       />
 
-      <HeroSection
+      {currentView === 'home' ? (
+        <>
+          <HeroSection
         copy={copy}
         focusMode={settings.focusMode}
         machine={selectedMachine}
@@ -353,7 +362,20 @@ function App() {
           />
         </LearningWorkspace>
         ) : null}
-        <SettingsPage
+        </main>
+        </>
+      ) : (
+        <QuizApp 
+          copy={copy} 
+          onNavigate={(view) => {
+            setCurrentView(view)
+            window.scrollTo({ top: 0, behavior: 'smooth' })
+          }} 
+          machines={localizedMachines} 
+        />
+      )}
+      
+      <SettingsPage
           isOpen={isSettingsOpen}
           onClose={() => setIsSettingsOpen(false)}
           copy={copy}
@@ -361,7 +383,6 @@ function App() {
           onReset={handleResetSettings}
           onSettingChange={handleSettingChange}
         />
-      </main>
 
       {toastMessage ? <Toast message={toastMessage} /> : null}
     </div>
